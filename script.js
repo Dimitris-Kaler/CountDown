@@ -73,3 +73,28 @@ function action() {
     }, 1000)
 
 }
+
+function startStop() {
+    if (active == false) {
+        action();
+    } else {
+        inactive();
+    }
+}
+
+function inactive() {
+    active = false
+    Array.from(buttons).forEach((btn) => {
+        btn.disabled = false
+    })
+    startSTopBtn.innerHTML = "Start";
+    watch.style.setProperty('--animationToPseudoElement', 'none');
+    clearInterval(intervalId);
+}
+
+function reset() {
+    numberDisplay.innerHTML = "0"
+}
+
+resetBtn.addEventListener("click", reset);
+startSTopBtn.addEventListener("click", startStop)
